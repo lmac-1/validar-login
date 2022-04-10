@@ -15,7 +15,6 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  
   const onSubmit = (event) => {
     // to show all the data we will get through from the form
     console.log(event);
@@ -29,21 +28,21 @@ export default function Login() {
             <div className="logo"></div>
             <h1>Inicia Sesión</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className={`${LoginCss.inputBonito} ${errors.email && LoginCss.error}`}>
+              <div
+                className={`${LoginCss.inputBonito} ${
+                  errors.email && LoginCss.error
+                }`}
+              >
                 <label className={LoginCss.textoInput}>
                   <span className={LoginCss.contentName}>Correo</span>
                 </label>
                 <input
                   type="text"
                   autoComplete="off"
-                  name="email"
                   placeholder="ejemplo@gmail.com"
                   /* This creates the validation rules for the email field */
                   {...register('email', {
-                    required: {
-                      value: true,
-                      message: 'Necesitas este campo',
-                    },
+                    required: 'Necesitas este campo',
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                       message: 'El formato no es correcto',
@@ -51,29 +50,80 @@ export default function Login() {
                   })}
                 />
                 {/* Displays error me ssage for email field */}
-                {errors.email && <span className={errors.email && LoginCss.mensajeError}>{errors.email.message}</span>}
+                {errors.email && (
+                  <span className={errors.email && LoginCss.mensajeError}>
+                    {errors.email.message}
+                  </span>
+                )}
               </div>
-              <div className={`${LoginCss.inputBonito} ${errors.password && LoginCss.error}`}>
+              <div
+                className={`${LoginCss.inputBonito} ${
+                  errors.nombre && LoginCss.error
+                }`}
+              >
+                <label className={LoginCss.textoInput}>
+                  <span className={LoginCss.contentName}>Nombre</span>
+                </label>
+                <input
+                  type="text"
+                  autoComplete="off"
+                  {...register('nombre', {
+                    required: 'El campo es requerido',
+                  })}
+                />
+                {errors.nombre && (
+                  <span className={errors.nombre && LoginCss.mensajeError}>
+                    {errors.nombre.message}
+                  </span>
+                )}
+              </div>
+              <div
+                className={`${LoginCss.inputBonito} ${
+                  errors.apellido && LoginCss.error
+                }`}
+              >
+                <label className={LoginCss.textoInput}>
+                  <span className={LoginCss.contentName}>Apellido</span>
+                </label>
+                <input
+                  type="text"
+                  autoComplete="off"
+                  {...register('apellido', {
+                    required: 'Necesitas este campo',
+                  })}
+                />
+                {/* Displays error me ssage for email field */}
+                {errors.apellido && (
+                  <span className={errors.apellido && LoginCss.mensajeError}>
+                    {errors.apellido.message}
+                  </span>
+                )}
+              </div>
+              <div
+                className={`${LoginCss.inputBonito} ${
+                  errors.password && LoginCss.error
+                }`}
+              >
                 <label className={LoginCss.textoInput}>
                   <span className={LoginCss.contentName}>Contraseña</span>
                 </label>
                 <input
                   type="password"
-                  name="password"
                   placeholder="Contraseña"
                   /* This creates the validation rules for the email field */
                   {...register('password', {
-                    required: {
-                      value: true,
-                      message: 'El campo es requerido',
-                    },
+                    required: 'El campo es requerido',
                     minLength: {
                       value: 6,
-                      message: 'La contraseña debe tener al menos 6 caracteres'
-                    }
+                      message: 'La contraseña debe tener al menos 6 caracteres',
+                    },
                   })}
                 />
-                {errors.password && <span className={errors.password && LoginCss.mensajeError}>{errors.password.message}</span>}
+                {errors.password && (
+                  <span className={errors.password && LoginCss.mensajeError}>
+                    {errors.password.message}
+                  </span>
+                )}
               </div>
               {/* <div className="aks-input-wrap">
                 <input autoComplete="off" className="aks-input" type="checkbox" id="checkbox" name="checkbox" ref={register({ required: false })} />
