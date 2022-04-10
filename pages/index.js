@@ -49,7 +49,7 @@ export default function Login() {
                     },
                   })}
                 />
-                {/* Displays error me ssage for email field */}
+                {/* Displays error message for email field */}
                 {errors.email && (
                   <span className={errors.email && LoginCss.mensajeError}>
                     {errors.email.message}
@@ -92,7 +92,6 @@ export default function Login() {
                     required: 'Necesitas este campo',
                   })}
                 />
-                {/* Displays error me ssage for email field */}
                 {errors.apellido && (
                   <span className={errors.apellido && LoginCss.mensajeError}>
                     {errors.apellido.message}
@@ -110,7 +109,7 @@ export default function Login() {
                 <input
                   type="password"
                   placeholder="Contraseña"
-                  /* This creates the validation rules for the email field */
+                  /* This creates the validation rules for the password field */
                   {...register('password', {
                     required: 'El campo es requerido',
                     minLength: {
