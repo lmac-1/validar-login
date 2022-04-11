@@ -12,8 +12,18 @@ export default function Login() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    /* Can add default values here */
+    defaultValues: {
+      nombre: '',
+      apellido: '',
+    },
+  });
+
+  // This will update everytime we update the 'nombre' field
+  const nombre = watch('nombre');
 
   const onSubmit = (event) => {
     // to show all the data we will get through from the form
@@ -28,6 +38,7 @@ export default function Login() {
             <div className="logo"></div>
             <h1>Inicia Sesión</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
+              
               <div
                 className={`${LoginCss.inputBonito} ${
                   errors.email && LoginCss.error
@@ -56,6 +67,7 @@ export default function Login() {
                   </span>
                 )}
               </div>
+
               <div
                 className={`${LoginCss.inputBonito} ${
                   errors.nombre && LoginCss.error
@@ -76,7 +88,9 @@ export default function Login() {
                     {errors.nombre.message}
                   </span>
                 )}
+                <p>{nombre}</p>
               </div>
+              
               <div
                 className={`${LoginCss.inputBonito} ${
                   errors.apellido && LoginCss.error
@@ -88,8 +102,10 @@ export default function Login() {
                 <input
                   type="text"
                   autoComplete="off"
+                  // register replaces 'name'
                   {...register('apellido', {
                     required: 'Necesitas este campo',
+                    //validate: (value) => value === 'Macartney' || 'Your surname must be \'Macartney\''
                   })}
                 />
                 {errors.apellido && (
@@ -98,6 +114,29 @@ export default function Login() {
                   </span>
                 )}
               </div>
+
+              <div
+                className={`${LoginCss.inputBonito} ${
+                  errors.age && LoginCss.error
+                }`}
+              >
+                <label className={LoginCss.textoInput}>
+                  <span className={LoginCss.contentName}>Age</span>
+                </label>
+                <input
+                  type="number"
+                  autoComplete="off"
+                  {...register('age', {
+                    required: 'Necesitas este campo',
+                  })}
+                />
+                {errors.age && (
+                  <span className={errors.age && LoginCss.mensajeError}>
+                    {errors.age.message}
+                  </span>
+                )}
+              </div>
+
               <div
                 className={`${LoginCss.inputBonito} ${
                   errors.password && LoginCss.error
