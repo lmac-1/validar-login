@@ -14,8 +14,6 @@ const Controller = ({ control, register, name, rules, render }) => {
 
   // Executes the register function with validation rules
   const props = register(name, rules);
-
-  console.log(errors);
   
   // Renders the field but carries through the props to the Input component
   return render({
